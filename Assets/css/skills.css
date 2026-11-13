@@ -1,0 +1,10 @@
+/* Skills page */
+.skill-card { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+.skill-card h3 { margin: 0; }
+.skill-card .chips { flex: 1; }
+.skill-card .icon {
+  width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center;
+  font-size: 1.2rem; font-weight: 700; color: var(--cyan);
+  background: rgba(47, 128, 255, 0.14); border: 1px solid rgba(47, 128, 255, 0.4);
+  box-shadow: 0 0 18px rgba(47, 128, 255, 0.25);
+}

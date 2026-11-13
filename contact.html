@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact | Sreya Krishna</title>
+  <link rel="icon" type="image/svg+xml" href="Assets/images/favicon.svg">
+  <link rel="stylesheet" href="Assets/css/base.css">
+  <link rel="stylesheet" href="Assets/css/contact.css">
+</head>
+<body data-page="contact">
+  <div class="bg-glow"></div>
+  <nav id="dock"></nav>
+
+  <main class="stage">
+    <section class="panel">
+      <div class="page-head">
+        <h2>Get In <span>Touch</span></h2>
+        <p>Open to opportunities, collaborations and conversations</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="info">
+          <a class="card item reveal" href="mailto:sreyakrishna26@gmail.com">
+            <span class="meta">Email</span><strong>sreyakrishna26@gmail.com</strong>
+          </a>
+          <a class="card item reveal" href="tel:+917907411485">
+            <span class="meta">Phone</span><strong>+91 79074 11485</strong>
+          </a>
+          <div class="card item reveal">
+            <span class="meta">Location</span><strong>Thodupuzha, Kerala, India</strong>
+          </div>
+          <a class="card item reveal" href="https://linkedin.com/in/sreya-krishna90869a352" target="_blank" rel="noopener">
+            <span class="meta">LinkedIn</span><strong>sreya-krishna90869a352</strong>
+          </a>
+          <a class="btn btn-primary reveal" href="Assets/documents/Sreya_Krishna_Resume.pdf" download>Download Resume</a>
+        </div>
+
+        <form id="contact-form" class="card form reveal" novalidate>
+          <label>Your Name
+            <input type="text" id="name" name="name" required autocomplete="name">
+          </label>
+          <label>Your Email
+            <input type="email" id="email" name="email" required autocomplete="email">
+          </label>
+          <label>Message
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </label>
+          <p id="form-status" class="status" role="status"></p>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script src="Assets/js/common.js"></script>
+  <script src="Assets/js/contact.js"></script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+/* =========================================================
+   EVO PORTFOLIO — Shared base styles
+   Theme, layout, dock navigation, buttons, cards, modal
+   ========================================================= */
+:root {
+  --bg: #050a18;
+  --panel: #0b1328;
+  --panel-2: #0f1a36;
+  --line: rgba(120, 160, 255, 0.16);
+  --text: #e8eefc;
+  --muted: #9fb0d3;
+  --blue: #2f80ff;
+  --cyan: #22d3ee;
+  --glow: 0 0 24px rgba(47, 128, 255, 0.45);
+  --radius: 18px;
+  --font: "Segoe UI", "Inter", system-ui, -apple-system, Roboto, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Ambient glow background */
+.bg-glow {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(60vw 40vh at 85% 0%, rgba(168, 85, 247, 0.14), transparent 70%),
+    radial-gradient(70vw 50vh at 10% 100%, rgba(34, 211, 238, 0.14), transparent 70%),
+    radial-gradient(50vw 40vh at 60% 100%, rgba(47, 128, 255, 0.16), transparent 70%),
+    var(--bg);
+}
+
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+
+/* ---------- Layout ---------- */
+.stage {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 36px 24px 60px 130px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.panel {
+  position: relative;
+  background: linear-gradient(160deg, var(--panel), #08101f);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 44px 40px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), inset 0 0 60px rgba(47, 128, 255, 0.05);
+  overflow: hidden;
+}
+.panel::before {
+  content: ""; position: absolute; width: 380px; height: 380px; border-radius: 50%;
+  top: -120px; left: 40%; background: radial-gradient(circle, rgba(47, 128, 255, 0.22), transparent 65%);
+  pointer-events: none;
+}
+.panel > * { position: relative; }
+
+.page-head { text-align: center; margin-bottom: 34px; }
+.page-head h2 { font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: 700; }
+.page-head h2 span, .accent { color: var(--blue); }
+.page-head p { color: var(--muted); margin-top: 6px; font-size: 0.98rem; }
+
+/* ---------- Dock navigation ---------- */
+.dock {
+  position: fixed; left: 28px; top: 50%; transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: 10px; padding: 14px 10px;
+  background: rgba(10, 18, 38, 0.85); backdrop-filter: blur(10px);
+  border: 1px solid rgba(47, 128, 255, 0.45); border-radius: 40px;
+  box-shadow: var(--glow), inset 0 0 18px rgba(47, 128, 255, 0.15);
+  z-index: 50;
+}
+.dock a {
+  position: relative; width: 44px; height: 44px; display: grid; place-items: center;
+  border-radius: 50%; color: var(--muted); transition: 0.25s;
+}
+.dock a svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.dock a:hover { color: #fff; background: rgba(47, 128, 255, 0.2); }
+.dock a.active { color: #fff; background: linear-gradient(135deg, var(--blue), #1d5fd6); box-shadow: var(--glow); }
+.dock a::after {
+  content: attr(data-label); position: absolute; left: 58px; padding: 4px 10px; font-size: 0.78rem;
+  background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px; white-space: nowrap;
+  opacity: 0; transform: translateX(-6px); pointer-events: none; transition: 0.2s;
+}
+.dock a:hover::after { opacity: 1; transform: none; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 11px 26px; border-radius: 40px; font: 600 0.92rem var(--font);
+  cursor: pointer; transition: 0.25s; border: 1px solid transparent; color: #fff;
+}
+.btn-primary { background: linear-gradient(135deg, var(--blue), #1b6cf0); box-shadow: 0 0 20px rgba(47, 128, 255, 0.45); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(47, 128, 255, 0.7); }
+.btn-ghost { background: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.25); }
+.btn-ghost:hover { border-color: var(--cyan); color: var(--cyan); transform: translateY(-2px); }
+.btn-sm { padding: 7px 16px; font-size: 0.8rem; }
+
+/* ---------- Cards, chips ---------- */
+.card {
+  background: rgba(15, 26, 54, 0.7); border: 1px solid var(--line); border-radius: 14px;
+  padding: 20px; transition: 0.3s;
+}
+.card:hover { border-color: rgba(47, 128, 255, 0.55); box-shadow: 0 0 26px rgba(47, 128, 255, 0.18); transform: translateY(-3px); }
+.card h3 { font-size: 1.05rem; margin-bottom: 4px; }
+.card .meta { color: var(--cyan); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.03em; }
+.card p { color: var(--muted); font-size: 0.9rem; margin: 8px 0 14px; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  padding: 4px 12px; font-size: 0.76rem; border-radius: 20px; color: var(--cyan);
+  background: rgba(34, 211, 238, 0.08); border: 1px solid rgba(34, 211, 238, 0.28);
+}
+
+.grid { display: grid; gap: 18px; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+/* ---------- Modal ---------- */
+.modal-backdrop {
+  position: fixed; inset: 0; background: rgba(2, 5, 14, 0.78); backdrop-filter: blur(6px);
+  display: none; align-items: center; justify-content: center; padding: 20px; z-index: 100;
+}
+.modal-backdrop.open { display: flex; animation: fade 0.25s ease; }
+.modal {
+  width: min(640px, 100%); max-height: 86vh; overflow-y: auto; position: relative;
+  background: linear-gradient(160deg, var(--panel-2), var(--panel));
+  border: 1px solid rgba(47, 128, 255, 0.5); border-radius: 20px; padding: 32px;
+  box-shadow: var(--glow), 0 30px 80px rgba(0, 0, 0, 0.6);
+  animation: pop 0.3s ease;
+}
+.modal h3 { font-size: 1.4rem; }
+.modal .sub { color: var(--cyan); font-size: 0.88rem; margin: 2px 0 14px; font-weight: 600; }
+.modal p { color: var(--muted); margin-bottom: 14px; }
+.modal h4 { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--blue); margin: 16px 0 8px; }
+.modal ul.points { list-style: none; display: grid; gap: 8px; margin-bottom: 14px; }
+.modal ul.points li { position: relative; padding-left: 22px; color: #cdd8f2; font-size: 0.93rem; }
+.modal ul.points li::before { content: "▹"; position: absolute; left: 0; color: var(--cyan); }
+.modal-close {
+  position: absolute; top: 14px; right: 14px; width: 34px; height: 34px; border-radius: 50%;
+  border: 1px solid var(--line); background: transparent; color: var(--text); font-size: 1.2rem; cursor: pointer;
+}
+.modal-close:hover { border-color: var(--cyan); color: var(--cyan); }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pop { from { opacity: 0; transform: translateY(14px) scale(0.97); } to { opacity: 1; transform: none; } }
+
+/* ---------- Scroll to top ---------- */
+.to-top {
+  position: fixed; right: 26px; bottom: 26px; width: 44px; height: 44px; border-radius: 50%;
+  display: grid; place-items: center; border: none; cursor: pointer; color: #fff; z-index: 60;
+  background: linear-gradient(135deg, var(--blue), #1b6cf0); box-shadow: var(--glow);
+  opacity: 0; pointer-events: none; transition: 0.3s;
+}
+.to-top.show { opacity: 1; pointer-events: auto; }
+.to-top svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+
+.footer-note { text-align: center; color: var(--muted); font-size: 0.8rem; margin-top: 22px; }
+
+/* ---------- Reveal animation ---------- */
+.reveal { opacity: 0; transform: translateY(18px); transition: 0.6s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 720px) {
+  .stage { padding: 20px 14px 110px; justify-content: flex-start; }
+  .panel { padding: 30px 20px; }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .dock {
+    left: 50%; top: auto; bottom: 14px; transform: translateX(-50%);
+    flex-direction: row; gap: 4px; padding: 8px 10px; max-width: calc(100vw - 20px);
+  }
+  .dock a { width: 38px; height: 38px; }
+  .dock a::after { display: none; }
+  .to-top { bottom: 82px; right: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
+}

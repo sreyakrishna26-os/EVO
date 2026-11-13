@@ -1,0 +1,16 @@
+/* Education page */
+.timeline { position: relative; display: grid; gap: 20px; padding-left: 34px; max-width: 760px; margin: 0 auto; }
+.timeline::before {
+  content: ""; position: absolute; left: 9px; top: 6px; bottom: 6px; width: 2px;
+  background: linear-gradient(var(--blue), var(--cyan), transparent);
+}
+.timeline li { position: relative; list-style: none; }
+.timeline .dot {
+  position: absolute; left: -34px; top: 22px; width: 20px; height: 20px; border-radius: 50%;
+  background: var(--bg); border: 3px solid var(--blue); box-shadow: var(--glow);
+}
+.row { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.score {
+  padding: 4px 14px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; color: #fff;
+  background: linear-gradient(135deg, var(--blue), #1b6cf0);
+}
